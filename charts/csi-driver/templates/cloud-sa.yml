@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cloud-sa
+  namespace: kube-system
+type: Opaque
+data:
+  cloud-sa.json: {{ .Values.cloud_sa_secret }}

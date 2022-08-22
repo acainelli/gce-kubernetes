@@ -1,0 +1,66 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: csi-gce-pd-controller
+  namespace: kube-system
+spec:
+  serviceName: "csi-gce-pd"
+  replicas: {{ .Values.controller.gcp_pd_csi_controller_replicas }}
+  selector:
+    matchLabels:
+      app: gcp-compute-persistent-disk-csi-driver
+  template:
+    metadata:
+      labels:
+        app: gcp-compute-persistent-disk-csi-driver
+    spec:
+      hostNetwork: true
+      serviceAccountName: csi-gce-pd-controller-sa
+      priorityClassName: csi-gce-pd-controller
+      containers:
+        - name: csi-provisioner
+          image: "{{ .Values.controller.csi_provisioner_image }}:{{ .Values.controller.csi_provisioner_tag }}"
+          args:
+            - "--v=5"
+            - "--csi-address=/csi/csi.sock"
+            - "--feature-gates=Topology=true"
+          volumeMounts:
+            - name: socket-dir
+              mountPath: /csi
+        - name: csi-attacher
+          image: "{{ .Values.controller.csi_attacher_image }}:{{ .Values.controller.csi_attacher_tag }}"
+          args:
+            - "--v=5"
+            - "--csi-address=/csi/csi.sock"
+          volumeMounts:
+            - name: socket-dir
+              mountPath: /csi
+        - name: csi-resizer
+          image: "{{ .Values.controller.csi_resizer_image }}:{{ .Values.controller.csi_resizer_tag }}"
+          args:
+            - "--v=5"
+            - "--csi-address=/csi/csi.sock"
+          volumeMounts:
+            - name: socket-dir
+              mountPath: /csi
+        - name: gce-pd-driver
+          image: "{{ .Values.controller.csi_driver_image }}:{{ .Values.controller.csi_driver_tag }}"
+          args:
+            - "--v=5"
+            - "--endpoint=unix:/csi/csi.sock"
+          env:
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: "/etc/cloud-sa/cloud-sa.json"
+          volumeMounts:
+            - name: socket-dir
+              mountPath: /csi
+            - name: cloud-sa-volume
+              readOnly: true
+              mountPath: "/etc/cloud-sa"
+      volumes:
+        - name: socket-dir
+          emptyDir: {}
+        - name: cloud-sa-volume
+          secret:
+            secretName: cloud-sa
+  volumeClaimTemplates: []
