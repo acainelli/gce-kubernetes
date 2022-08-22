@@ -2,5 +2,5 @@ apiVersion: v2
 name: gce-csi-driver
 description: A Helm chart for GCE CSI Driver
 type: application
-version: 1.0.0
-appVersion: "1.0.0"
+version: v1.22.5
+appVersion: "1.7.3"
