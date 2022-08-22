@@ -1,0 +1,30 @@
+## All images should be based on oficial GCE CSI Driver repo, using always stable corresponding to your cluster version
+## https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/tree/master/deploy/kubernetes/images
+
+controller:
+
+  # Replicas for nodes
+  gcp_pd_csi_controller_replicas: 1
+
+  # csi-provisioner
+  csi_provisioner_image: k8s.gcr.io/sig-storage/csi-provisioner
+  csi_provisioner_tag: v3.1.0
+
+  # csi-attacher
+  csi_attacher_image: k8s.gcr.io/sig-storage/csi-attacher
+  csi_attacher_tag: v3.4.0
+
+  # csi-resizer
+  csi_resizer_image: k8s.gcr.io/sig-storage/csi-resizer
+  csi_resizer_tag: v1.4.0
+
+  # csi-driver
+  csi_driver_image: k8s.gcr.io/cloud-provider-gcp/gcp-compute-persistent-disk-csi-driver
+  csi_driver_tag: v1.7.1
+
+node:
+  # node-registrar
+  node_registrar_image: k8s.gcr.io/sig-storage/csi-node-driver-registrar
+  node_registrar_tag: v2.5.0
+
+cloud_sa_secret: ""
