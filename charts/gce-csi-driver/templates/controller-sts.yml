@@ -17,6 +17,17 @@ spec:
       hostNetwork: true
       serviceAccountName: csi-gce-pd-controller-sa
       priorityClassName: csi-gce-pd-controller
+      nodeSelector:
+        node-role.kubernetes.io/control-plane: ""
+        node-role.kubernetes.io/master: ""
+      tolerations:
+      - effect: NoSchedule
+        key: node.cloudprovider.kubernetes.io/uninitialized
+        value: "true"
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/control-plane
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/master
       containers:
         - name: csi-provisioner
           image: "{{ .Values.controller.csi_provisioner_image }}:{{ .Values.controller.csi_provisioner_tag }}"
