@@ -19,7 +19,6 @@ spec:
       priorityClassName: csi-gce-pd-controller
       nodeSelector:
         node-role.kubernetes.io/control-plane: ""
-        node-role.kubernetes.io/master: ""
       tolerations:
       - effect: NoSchedule
         key: node.cloudprovider.kubernetes.io/uninitialized
