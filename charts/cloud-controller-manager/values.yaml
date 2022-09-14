@@ -2,4 +2,4 @@ controller:
   ccm_image_name: "quay.io/openshift/origin-gcp-cloud-controller-manager"
   ccm_image_tag: "4.10.0"
 
-cloud_config_secret: ""
+cloud_config_secret: " "
