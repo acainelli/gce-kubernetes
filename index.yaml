@@ -21,6 +21,16 @@ entries:
     urls:
     - https://github.com/acainelli/gce-kubernetes/releases/download/cloud-controller-manager-v1.22.5/cloud-controller-manager-v1.22.5.tgz
     version: v1.22.5
+  - apiVersion: v2
+    appVersion: 4.10.0
+    created: "2022-09-15T01:39:04.292708123Z"
+    description: A Helm chart for GCE Cloud Controller Manager
+    digest: 7ef4c3e60cfa3da06214bed2f3d3cc94cb8e7f2244ce01c514367f69e5a2560a
+    name: cloud-controller-manager
+    type: application
+    urls:
+    - https://github.com/acainelli/gce-kubernetes/releases/download/cloud-controller-manager-v0.1.22/cloud-controller-manager-v0.1.22.tgz
+    version: v0.1.22
   gce-csi-driver:
   - apiVersion: v2
     appVersion: 1.7.3
@@ -32,4 +42,14 @@ entries:
     urls:
     - https://github.com/acainelli/gce-kubernetes/releases/download/gce-csi-driver-v1.22.5/gce-csi-driver-v1.22.5.tgz
     version: v1.22.5
+  - apiVersion: v2
+    appVersion: 1.7.3
+    created: "2022-09-15T01:39:04.454893858Z"
+    description: A Helm chart for GCE CSI Driver
+    digest: 04d84f3c192fbce1e072a070de5d945ccfc41016d5b84336cdcb667500e35d28
+    name: gce-csi-driver
+    type: application
+    urls:
+    - https://github.com/acainelli/gce-kubernetes/releases/download/gce-csi-driver-v0.1.22/gce-csi-driver-v0.1.22.tgz
+    version: v0.1.22
 generated: "2022-08-22T13:06:32.82738197Z"
