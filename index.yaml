@@ -44,6 +44,16 @@ entries:
   gce-csi-driver:
   - apiVersion: v2
     appVersion: 1.7.3
+    created: "2023-03-07T11:50:04.367682911Z"
+    description: A Helm chart for GCE CSI Driver
+    digest: 965bb8fff6555e59471d0b0c3e0cf4d87da88b480bd5c757ff022c74ccbd4b7c
+    name: gce-csi-driver
+    type: application
+    urls:
+    - https://github.com/acainelli/gce-kubernetes/releases/download/gce-csi-driver-v1.25.4/gce-csi-driver-v1.25.4.tgz
+    version: v1.25.4
+  - apiVersion: v2
+    appVersion: 1.7.3
     created: "2022-09-15T01:40:51.551353939Z"
     description: A Helm chart for GCE CSI Driver
     digest: 5951f0e60dcab20cc74f51d876c7090ec047c905c0b8fe941187632354239bf8
